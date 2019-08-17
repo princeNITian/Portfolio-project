@@ -8,9 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Prince Raj</title>
+    <title>{{ blog.title }}</title>
 
-    
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -32,7 +31,7 @@
             }
         }
     </style>
-   
+
 </head>
 
 <body>
@@ -47,48 +46,41 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="https://twitter.com/im_princeraj">Twitter</a>
                     <a class="nav-item nav-link" href="{% static 'resume.pdf'%}">Resume</a>
-                    <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                    <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main role="main">
-
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Hi, I'm Prince.</h1>
-                <p class="lead text-muted">Services:- Web Apps | Android Apps | Databases </p>
-                <p>
-                    <a href="mailto:iamprinceraj@yahoo.com" class="btn btn-primary my-2">Email Me</a>
-                </p>
-                <img src="{% static 'final.jpg' %}" height="300"/>
+        <div class="container">
+          <div class="card card-header mt-2 border border-danger rounded">
+            <h1 class="text-center pt-3 ">{{ blog.title }}</h1>
+          </div> 
+        
+        <p class="text-center">{{ blog.pub_date }}</p>
+ 
+        <img class="img-fluid" src="{{ blog.image.url }}" />
+         
+           
+            <br />
+            <div class="card card-body mt-2 border border-dark rounded">
+                <h3 class="text-primary text-center">Post Details</h3>
+                <p>{{ blog.body }}</p>
             </div>
-        </section>
+         
 
-        <div class="album py-5 bg-light">
-            <div class="container">
 
-                <div class="row">
-                    {% for job in jobs.all %}
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img src="{{ job.image.url }}" class="card-img-top" alt=""/>
-                            <div class="card-body">
-                                <p class="card-text">{{ job.summary }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+
+
+
+
         </div>
-
     </main>
 
     <footer class="text-muted">
         <div class="container text-center">
-          <p>&copy; Prince Raj {% now "Y" %}</p>
+            <p>&copy; Prince Raj {% now "Y" %}</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

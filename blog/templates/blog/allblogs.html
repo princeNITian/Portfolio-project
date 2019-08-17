@@ -8,9 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Prince Raj</title>
+    <title>Prince's Blog</title>
 
-    
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -32,7 +31,7 @@
             }
         }
     </style>
-   
+
 </head>
 
 <body>
@@ -47,48 +46,40 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-item nav-link" href="https://twitter.com/im_princeraj">Twitter</a>
                     <a class="nav-item nav-link" href="{% static 'resume.pdf'%}">Resume</a>
-                    <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                    <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main role="main">
+        <div class="container">
+        <h1 class="text-center pt-3">Welcome to Prince's Blog.</h1>
+        <br />
+        <br />
+        <h2>Latest Posts</h2>
+        <hr />
+        
+        {% for blog in blogs.all %}
+        <a href="{% url 'detail' blog.id %}"><h4>{{ blog.title }}</h4></a>
+        {{ blog.pub_date_pretty }}
+        <br />
+        <img class="img-fluid" height=500 width=500 src="{{ blog.image.url }}" />
+        <br />
+        <p>{{ blog.summary }}</p>
+        {% endfor %}
 
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1 class="jumbotron-heading">Hi, I'm Prince.</h1>
-                <p class="lead text-muted">Services:- Web Apps | Android Apps | Databases </p>
-                <p>
-                    <a href="mailto:iamprinceraj@yahoo.com" class="btn btn-primary my-2">Email Me</a>
-                </p>
-                <img src="{% static 'final.jpg' %}" height="300"/>
-            </div>
-        </section>
 
-        <div class="album py-5 bg-light">
-            <div class="container">
 
-                <div class="row">
-                    {% for job in jobs.all %}
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img src="{{ job.image.url }}" class="card-img-top" alt=""/>
-                            <div class="card-body">
-                                <p class="card-text">{{ job.summary }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
+
+
+
         </div>
-
     </main>
 
     <footer class="text-muted">
         <div class="container text-center">
-          <p>&copy; Prince Raj {% now "Y" %}</p>
+            <p>&copy; Prince Raj {% now "Y" %}</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
